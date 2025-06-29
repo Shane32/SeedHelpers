@@ -1,0 +1,21 @@
+namespace Shane32.SeedHelpers
+{
+    public interface ISeed<TDbContext>
+    {
+        System.Threading.Tasks.Task SeedAsync(TDbContext db, System.Threading.CancellationToken cancellationToken = default);
+    }
+    public interface ISeed<TDbContext, T> : Shane32.SeedHelpers.ISeed<TDbContext> { }
+    public class SeedHandler<TDbContext>
+    {
+        public SeedHandler(TDbContext db) { }
+        public void Clear() { }
+        public System.Threading.Tasks.Task SeedAllAsync(System.Threading.CancellationToken cancellationToken = default) { }
+        public System.Threading.Tasks.Task SeedAsync(System.Type type, System.Threading.CancellationToken cancellationToken = default) { }
+        public static System.Collections.Generic.IEnumerable<System.Type> GetSeedTypes() { }
+    }
+    public abstract class Seed<TDbContext, T> : Shane32.SeedHelpers.ISeed<TDbContext>, Shane32.SeedHelpers.ISeed<TDbContext, T>
+    {
+        protected Seed() { }
+        public abstract System.Threading.Tasks.Task SeedAsync(TDbContext db, System.Threading.CancellationToken cancellationToken = default);
+    }
+}

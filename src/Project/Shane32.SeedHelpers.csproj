@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Description>Provides seed helper methods for test databases</Description>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+</Project>
