@@ -27,9 +27,9 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           global-json-file: global.json
-          source-url: https://nuget.pkg.github.com/Shane32/index.json
+          source-url: https://api.nuget.org/v3/index.json
         env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NUGET_AUTH_TOKEN: ${{secrets.NUGET_AUTH_TOKEN}}
       - name: Install dependencies
         run: dotnet restore
       - name: Build solution [Release]
@@ -41,8 +41,8 @@ jobs:
         with:
           name: Nuget packages
           path: out/*
-      - name: Publish Nuget packages to GitHub registry
-        run: dotnet nuget push "out/*" -k ${{secrets.GITHUB_TOKEN}}
+      - name: Publish Nuget packages to NuGet registry
+        run: dotnet nuget push "out/*" -k ${{secrets.NUGET_AUTH_TOKEN}}
       - name: Upload nuget packages as release artifacts
         uses: actions/github-script@v2
         with:
